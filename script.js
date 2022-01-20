@@ -13,15 +13,30 @@ document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value);
 */
 
+    const secretNumber = Math.trunc(Math.random() * 20) + 1;
+    document.querySelector('.number').textContent = secretNumber;
+    
+    console.log(secretNumber);  
+
 // HANDLING CLICK EVENTS
 document.querySelector('.check').addEventListener('click', function() {
+    
     const guess = Number(document.querySelector('.guess').value);
     console.log(guess, typeof guess);
 
 //    1. Assume no value was input into the field
     if (!guess) {
         document.querySelector('.message').textContent = "⛔ No Number!"
+    } else if (guess === secretNumber) {
+        document.querySelector('.message').textContent = "🎉 Correct Number!"
+    } else if (guess > secretNumber) {
+        document.querySelector('.message').textContent = "📈 Too High!"
+        document.querySelector('.score').textContent--;
+    } else if (guess < secretNumber) {
+        document.querySelector('.message').textContent = "📉 Too Low!"
+        document.querySelector('.score').textContent--;
     }
+
 })
 // whenever we get something from the user interface e.g value of an input field, the data type is always a string. Hence the need to convert the 'guess' variable into a number
 
