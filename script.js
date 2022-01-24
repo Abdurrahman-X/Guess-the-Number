@@ -62,21 +62,16 @@ document.querySelector('.check').addEventListener('click', function() {
 
 })
 
-// document.querySelector('.again').addEventListener('click', function () {
-//     document.querySelector('.message').textContent = "Start guessing..." 
-//     document.querySelector('.score').textContent = 20;
-//     document.body.style.backgroundColor = "#222";
-//     document.querySelector(".number").style.width = "15rem";
-//     document.querySelector('.number').textContent = "?";
-//     document.querySelector(".guess").value = "";
-// })
+document.querySelector('.again').addEventListener('click', function () {
+    document.querySelector('.message').textContent = "Start guessing..." 
+    document.querySelector('.score').textContent = 20;
+    document.body.style.backgroundColor = "#222";
+    document.querySelector(".number").style.width = "15rem";
+    document.querySelector('.number').textContent = "?";
+    document.querySelector(".guess").value = "";
+})
+
 // whenever we get something from the user interface e.g value of an input field, the data type is always a string. Hence the need to convert the 'guess' variable into a number
 
-//console.log(secretNum);
-
-
-
-
-
-
+// console.log(secretNum);
 
