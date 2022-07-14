@@ -4,8 +4,7 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-orbs:
-  welcome: circleci/welcome-orb@0.4.1
+
 
 
 jobs:
@@ -17,7 +16,6 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - checkout
       - run:
           name: "Print hello"
           command: "echo Hello!"
@@ -26,7 +24,6 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - checkout
       - run:
           name: "Print world"
           command: "echo World!"
@@ -37,7 +34,7 @@ jobs:
 workflows:
   welcome:
     jobs:
-      - welcome/run
+     
       - print-hello
       - print-world:
           requires: [print-hello]
