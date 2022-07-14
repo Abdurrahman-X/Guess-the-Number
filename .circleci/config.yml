@@ -44,9 +44,7 @@ jobs:
       steps:
         - attach_workspace:
             at: ~/
-        - run: if [[ `cat ~/output.txt` == "hello, world!" ]]; then
-                  echo "It worked!";
-               fi
+        - run: cat ~/output.txt
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
