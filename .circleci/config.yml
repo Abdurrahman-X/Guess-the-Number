@@ -46,8 +46,6 @@ jobs:
             at: ~/
         - run: if [[ `cat ~/output.txt` == "hello, world!" ]]; then
                   echo "It worked!";
-               else
-                  echo "Nope!, It doesn't work"; exit 1
                fi
 
 # Invoke jobs via workflows
