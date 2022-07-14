@@ -8,33 +8,49 @@ version: 2.1
 
 
 jobs:
-  print-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: circleci/node:13.8.0
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - run:
-          name: "Print hello"
-          command: "echo Hello!"
+  # print-hello:
+  #   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+  #   # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  #   docker:
+  #     - image: circleci/node:13.8.0
+  #   # Add steps to the job
+  #   # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  #   steps:
+  #     - run:
+  #         name: "Print hello"
+  #         command: "echo Hello!"
 
-  print-world:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run:
-          name: "Print world"
-          command: "echo World!"
+  # print-world:
+  #   docker:
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - run:
+  #         name: "Print world"
+  #         command: "echo World!"
 
+  save-hello-world-output:
+      docker: 
+        - image: circleci/node:13.8.0
+      steps:
+        - run: echo "hello world" > output.txt
+        - persistent_to_workspace: 
+            root: ~/
+            paths:
+              - output.txt
+
+  print-output-file:
+      docker: 
+        - image: circleci/node:13.8.0
+      steps:
+        - attach_workspace:
+            at: ~/
+        - run: cat ~/output.txt
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   welcome:
     jobs:
-     
-      - print-hello
-      - print-world:
-          requires: [print-hello]
+      - save-hello-world-output
+      - print-output-file:
+          requires: [save-hello-world-output]
