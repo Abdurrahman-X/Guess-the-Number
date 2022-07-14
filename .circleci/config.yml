@@ -32,8 +32,8 @@ jobs:
       docker: 
         - image: circleci/node:13.8.0
       steps:
-        - run: echo "hello world" > output.txt
-        - persistent_to_workspace: 
+        - run: echo "hello world" > ~/output.txt
+        - persist_to_workspace: 
             root: ~/
             paths:
               - output.txt
@@ -49,7 +49,7 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  welcome:
+  my-workflow:
     jobs:
       - save-hello-world-output
       - print-output-file:
