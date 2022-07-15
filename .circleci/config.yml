@@ -68,18 +68,18 @@ jobs:
   #       - run: cat ~/output.txt
 
   pipeline-id-generate:
-      <<: *default
+        <<: *default
         
-      steps:
-        - print-pipeline-id:
-            to: $CIRCLE_WORKFLOW_ID
+        steps:
+          - print-pipeline-id:
+              to: $CIRCLE_WORKFLOW_ID
 
   circle-buildnum-generate:
-      <<: *default
+       <<: *default
         
-      steps:
-        - print-circleci-buildnum:
-            to: $CIRCLE_BUILD_NUM
+        steps:
+          - print-circleci-buildnum:
+              to: $CIRCLE_BUILD_NUM
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
