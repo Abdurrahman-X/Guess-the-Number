@@ -9,7 +9,7 @@ commands:
         description: "A simple command to print the id of the pipeline"
         parameters:
           to:
-            type: integer
+            type: string
         steps:
           - run: echo << parameters.to >>
 
