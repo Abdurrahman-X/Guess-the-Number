@@ -14,14 +14,6 @@ commands:
         steps:
           - run: echo << parameters.to >>
 
-    print-circleci-buildnum:
-        description: "A simple command to print the circleci build number"
-        parameters:
-          to:
-            type: integer
-          steps:
-            - run: echo << parameters.to >>
-
 
 jobs:
 ######################### CREATING JOBS ############################
@@ -64,6 +56,7 @@ jobs:
   #           at: ~/
   #       - run: cat ~/output.txt
 
+########################## RE-USABLE JOB CODE #############################
   pipeline-id-generate:
         docker:
           - image: circleci/node:13.8.0
@@ -71,18 +64,11 @@ jobs:
           - print-pipeline-id:
               to: $CIRCLE_WORKFLOW_ID
 
-  circle-buildnum-generate:
-        docker:
-          - image: circleci/node:13.8.0
-        steps:
-          - print-circleci-buildnum:
-              to: $CIRCLE_BUILD_NUM
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   pipeline-workflow:
     jobs:
       - pipeline-id-generate
-      - circle-buildnum-generate:
-          requires: [pipeline-id-generate]
+     
       
